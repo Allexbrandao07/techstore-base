@@ -9,7 +9,7 @@ Você assumiu a manutenção da TechStore, uma loja virtual em React que já est
 * Siga a organização do projeto descrita no README.
 * Use apenas os recursos de JavaScript e React vistos em aula.
 * Nenhuma alteração pode quebrar o que já funciona na loja.
-* Entregue fazendo push no seu repositório até o fim do horário.
+* Entregue o link do repositório e do projeto publicado na Vercel na tarefa do Teams.
 * Sua entrega será verificada a partir de um clone novo do repositório, seguindo as instruções do README.
 
 ---
