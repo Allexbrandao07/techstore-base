@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router'
 
-export default function PaginaProduto({ produtos, onAdicionar }) {
+export default function PaginaProduto({ produtos, clienteAtual, avisos, onAdicionar, onPedirAviso }) {
   const { id } = useParams()
   const produto = produtos.find((item) => item.id === id)
 
@@ -17,7 +17,12 @@ export default function PaginaProduto({ produtos, onAdicionar }) {
 
   const relacionados = produtos
     .filter((item) => item.category === produto.category && item.id !== produto.id)
+    .filter((item) => item.estoque > 0)
     .slice(0, 4)
+
+  const jaPediuAviso =
+    clienteAtual &&
+    avisos.find((aviso) => aviso.produtoId === produto.id && aviso.email === clienteAtual.email)
 
   return (
     <section>
@@ -52,6 +57,22 @@ export default function PaginaProduto({ produtos, onAdicionar }) {
           >
             Adicionar ao carrinho
           </button>
+
+          {produto.estoque === 0 && !jaPediuAviso && (
+            <button
+              className="botao botao-secundario"
+              onClick={() => onPedirAviso(produto)}
+              disabled={!clienteAtual}
+            >
+              Avise-me quando chegar
+            </button>
+          )}
+          {produto.estoque === 0 && jaPediuAviso && (
+            <p className="mensagem-cupom">
+              Pronto, {clienteAtual.nome.split(' ')[0]}! Vamos avisar em {clienteAtual.email} quando
+              o produto voltar.
+            </p>
+          )}
 
           <ul className="detalhe-garantias">
             <li>Troca grátis em até 30 dias</li>

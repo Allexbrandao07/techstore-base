@@ -1,5 +1,5 @@
 // Página usada pelo time de estoque para acompanhar a quantidade de cada produto
-export default function Estoque({ produtos }) {
+export default function Estoque({ produtos, avisos }) {
   // slice cria uma cópia, para o sort não alterar a lista original
   const ordenados = produtos.slice().sort((a, b) => a.estoque - b.estoque)
 
@@ -17,6 +17,7 @@ export default function Estoque({ produtos }) {
               <th>Categoria</th>
               <th>Unidades</th>
               <th>Situação</th>
+              <th>Aguardando aviso</th>
             </tr>
           </thead>
           <tbody>
@@ -31,6 +32,15 @@ export default function Estoque({ produtos }) {
                     <span className="selo selo-alerta">Repor</span>
                   )}
                   {produto.estoque >= 5 && <span className="selo selo-ok">OK</span>}
+                </td>
+                <td>
+                  {avisos
+                    .filter((aviso) => aviso.produtoId === produto.id)
+                    .map((aviso) => (
+                      <p key={aviso.email}>
+                        {aviso.nome} ({aviso.email})
+                      </p>
+                    ))}
                 </td>
               </tr>
             ))}

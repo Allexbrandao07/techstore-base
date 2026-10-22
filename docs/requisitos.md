@@ -11,8 +11,9 @@
 
 ## Produtos esgotados
 
-* Produtos sem unidades em estoque continuam visíveis na loja, com o selo "Esgotado".
-* O botão de compra fica desabilitado nos produtos esgotados.
+* Produtos sem unidades em estoque não aparecem na loja, nos produtos relacionados nem nas sugestões do carrinho.
+* A página do produto esgotado continua abrindo pelo link direto (ex.: links divulgados nas redes sociais), com o botão de compra desabilitado e o botão "Avise-me quando chegar", que registra o nome e o e-mail do cliente.
+* A área interna `/estoque` mostra, em cada produto, quem está aguardando o aviso.
 
 ## Produtos sem preço
 

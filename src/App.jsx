@@ -17,6 +17,7 @@ export default function App() {
   const [carrinho, setCarrinho] = useState([])
   const [clientes, setClientes] = useState([])
   const [clienteAtualId, setClienteAtualId] = useState(null)
+  const [avisos, setAvisos] = useState([])
 
   useEffect(() => {
     buscarProdutos()
@@ -50,6 +51,16 @@ export default function App() {
 
   const clienteAtual = clientes.find((cliente) => cliente.id === clienteAtualId)
 
+  // Pedido de aviso de um produto esgotado, visto pelo time de estoque na área interna
+  function pedirAviso(produto) {
+    setAvisos(
+      avisos.concat({ produtoId: produto.id, nome: clienteAtual.nome, email: clienteAtual.email })
+    )
+  }
+
+  // Produto esgotado não aparece na loja, mas a página dele continua abrindo pelo link direto
+  const produtosDisponiveis = produtos.filter((produto) => produto.estoque > 0)
+
   return (
     <div className="app">
       <RolarParaTopo />
@@ -63,25 +74,33 @@ export default function App() {
           <Routes>
             <Route
               path="/"
-              element={<Loja produtos={produtos} onAdicionar={adicionarAoCarrinho} />}
+              element={<Loja produtos={produtosDisponiveis} onAdicionar={adicionarAoCarrinho} />}
             />
             <Route
               path="/produto/:id"
-              element={<PaginaProduto produtos={produtos} onAdicionar={adicionarAoCarrinho} />}
+              element={
+                <PaginaProduto
+                  produtos={produtos}
+                  clienteAtual={clienteAtual}
+                  avisos={avisos}
+                  onAdicionar={adicionarAoCarrinho}
+                  onPedirAviso={pedirAviso}
+                />
+              }
             />
             <Route
               path="/carrinho"
               element={
                 <Carrinho
                   carrinho={carrinho}
-                  produtos={produtos}
+                  produtos={produtosDisponiveis}
                   clienteAtual={clienteAtual}
                   onAdicionar={adicionarAoCarrinho}
                   onRemover={removerUmaUnidade}
                 />
               }
             />
-            <Route path="/estoque" element={<Estoque produtos={produtos} />} />
+            <Route path="/estoque" element={<Estoque produtos={produtos} avisos={avisos} />} />
           </Routes>
         )}
       </main>

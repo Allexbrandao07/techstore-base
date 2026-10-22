@@ -4,6 +4,8 @@
 
 * Correção do total do carrinho: preços que a API envia como texto passam a ser convertidos para número.
 * Produtos sem preço definido exibem "Preço em breve" e não podem ser adicionados ao carrinho.
+* Produtos esgotados deixam de aparecer na loja, nos relacionados e nas sugestões do carrinho. A página do produto continua acessível pelo link direto, com o botão "Avise-me quando chegar".
+* Coluna "Aguardando aviso" na área interna `/estoque`, com nome e e-mail de quem pediu aviso.
 
 ## 1.4.0 (setembro de 2026)
 
