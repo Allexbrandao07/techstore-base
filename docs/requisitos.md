@@ -1,6 +1,6 @@
 # Requisitos da TechStore
 
-Última atualização: março de 2026
+Última atualização: outubro de 2026
 
 ## Loja
 
@@ -17,6 +17,7 @@
 ## Produtos sem preço
 
 * Produtos sem preço definido não podem ser vendidos.
+* Eles continuam visíveis na loja, com "Preço em breve" e o botão de compra desabilitado, e não aparecem nas sugestões do carrinho. O estoque deles já está separado, então não contam como esgotados.
 
 ## Página do produto
 

@@ -1,6 +1,6 @@
 # Contrato da API
 
-Última atualização: março de 2026
+Última atualização: outubro de 2026
 
 A URL base fica na variável `VITE_API_URL`.
 
@@ -12,7 +12,7 @@ Retorna a lista de produtos do catálogo.
 |---|---|---|
 | `id` | string | Identificador do produto |
 | `title` | string | Nome do produto |
-| `price` | number | Preço atual, sempre numérico |
+| `price` | number | Preço atual. Atenção: alguns produtos vêm com o preço como texto (ex.: `"89"`) e produtos ainda sem preço vêm sem o campo. `buscarProdutos` converte para número e mantém `undefined` nos produtos sem preço |
 | `precoOriginal` | number | Preço antes da promoção. Presente só nos produtos em promoção |
 | `category` | string | `roupas`, `eletronicos`, `acessorios` ou `casa` |
 | `description` | string | Descrição do produto |

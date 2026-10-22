@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.0 (outubro de 2026)
+
+* Correção do total do carrinho: preços que a API envia como texto passam a ser convertidos para número.
+* Produtos sem preço definido exibem "Preço em breve" e não podem ser adicionados ao carrinho.
+
 ## 1.4.0 (setembro de 2026)
 
 * Novo visual do card de produto na lista, com avaliação e selos.
