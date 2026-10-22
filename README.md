@@ -42,6 +42,7 @@ Todo código novo deve seguir essa organização.
 | `/produto/:id` | Página do produto, com produtos relacionados |
 | `/carrinho` | Carrinho, com cupom de desconto e sugestões |
 | `/estoque` | Área interna usada pelo time de estoque |
+| `/painel` | Painel do lojista, com o valor em estoque por categoria, produtos sem preço e clientes aguardando produtos esgotados |
 
 ## Ambiente de testes
 

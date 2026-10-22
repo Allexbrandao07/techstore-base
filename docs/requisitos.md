@@ -31,3 +31,11 @@
 * Permite remover unidades.
 * Permite aplicar cupons de desconto.
 * Exibe o total da compra.
+
+## Painel do lojista
+
+* Página `/painel`, com acesso pelo menu do topo.
+* Mostra quanto a loja receberia vendendo todo o estoque hoje, por categoria (preço atual × unidades). Produtos sem preço ficam de fora desse valor.
+* Lista os produtos que esperam preço do time de suprimentos, com as unidades separadas.
+* Mostra quantos clientes estão aguardando aviso de produtos esgotados (cada cliente conta uma vez).
+* O lucro por categoria ainda não pode ser exibido: a API não informa o custo dos produtos nem as vendas.

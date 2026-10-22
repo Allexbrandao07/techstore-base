@@ -8,11 +8,15 @@ import { formatarPreco } from '../utils/formatarPreco'
 export default function Carrinho({ carrinho, produtos, clienteAtual, onAdicionar, onRemover }) {
   const [codigoCupom, setCodigoCupom] = useState('')
   const [cupomAplicado, setCupomAplicado] = useState(null)
-  const [mensagemCupom, setMensagemCupom] = useState('')
 
   const itens = agruparItens(carrinho)
   const total = calcularTotal(carrinho)
-  const totalComDesconto = cupomAplicado ? total * (1 - cupomAplicado.desconto) : total
+
+  // O cupom é validado de novo sempre que o cliente muda, para o desconto não passar
+  // de um cliente para outro no mesmo computador
+  const resultadoCupom = cupomAplicado !== null ? validarCupom(cupomAplicado, clienteAtual) : null
+  const desconto = resultadoCupom && resultadoCupom.valido ? resultadoCupom.desconto : 0
+  const totalComDesconto = total * (1 - desconto)
 
   const sugestoes = produtos
     .filter((produto) => !carrinho.find((item) => item.id === produto.id))
@@ -21,15 +25,7 @@ export default function Carrinho({ carrinho, produtos, clienteAtual, onAdicionar
 
   function aplicarCupom(evento) {
     evento.preventDefault()
-    const resultado = validarCupom(codigoCupom, clienteAtual)
-
-    if (resultado.valido) {
-      setCupomAplicado(resultado)
-      setMensagemCupom('Cupom aplicado!')
-    } else {
-      setCupomAplicado(null)
-      setMensagemCupom('Cupom inválido')
-    }
+    setCupomAplicado(codigoCupom)
   }
 
   if (carrinho.length === 0) {
@@ -85,13 +81,17 @@ export default function Carrinho({ carrinho, produtos, clienteAtual, onAdicionar
               />
               <button className="botao botao-secundario">Aplicar</button>
             </div>
-            {mensagemCupom && <p className="mensagem-cupom">{mensagemCupom}</p>}
+            {resultadoCupom && (
+              <p className="mensagem-cupom">
+                {resultadoCupom.valido ? 'Cupom aplicado!' : resultadoCupom.mensagem}
+              </p>
+            )}
           </form>
 
-          {cupomAplicado && (
+          {desconto > 0 && (
             <p className="resumo-linha">
               <span>Desconto</span>
-              <span>{cupomAplicado.desconto * 100}%</span>
+              <span>{desconto * 100}%</span>
             </p>
           )}
           <p className="total">

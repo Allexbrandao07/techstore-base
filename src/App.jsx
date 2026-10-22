@@ -7,6 +7,7 @@ import Loja from './pages/Loja'
 import PaginaProduto from './pages/PaginaProduto'
 import Carrinho from './pages/Carrinho'
 import Estoque from './pages/Estoque'
+import Painel from './pages/Painel'
 import { buscarProdutos } from './services/produtos'
 import { buscarClientes } from './services/clientes'
 
@@ -101,6 +102,7 @@ export default function App() {
               }
             />
             <Route path="/estoque" element={<Estoque produtos={produtos} avisos={avisos} />} />
+            <Route path="/painel" element={<Painel produtos={produtos} avisos={avisos} />} />
           </Routes>
         )}
       </main>

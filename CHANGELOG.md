@@ -6,6 +6,8 @@
 * Produtos sem preço definido exibem "Preço em breve" e não podem ser adicionados ao carrinho.
 * Produtos esgotados deixam de aparecer na loja, nos relacionados e nas sugestões do carrinho. A página do produto continua acessível pelo link direto, com o botão "Avise-me quando chegar".
 * Coluna "Aguardando aviso" na área interna `/estoque`, com nome e e-mail de quem pediu aviso.
+* Cupom `PRIMEIRACOMPRA` é verificado de novo quando o cliente muda com o carrinho aberto, para o desconto não passar para clientes que já compraram. Quem já tem pedidos recebe uma mensagem explicando que o cupom vale só para a primeira compra.
+* Novo painel do lojista em `/painel`, com acesso pelo menu: valor em estoque por categoria, produtos esperando preço e clientes aguardando produtos esgotados.
 
 ## 1.4.0 (setembro de 2026)
 

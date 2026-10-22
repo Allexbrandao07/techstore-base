@@ -7,11 +7,11 @@ export function validarCupom(codigo, cliente) {
   const desconto = CUPONS[codigoNormalizado]
 
   if (!desconto) {
-    return { valido: false }
+    return { valido: false, mensagem: 'Cupom inválido' }
   }
 
   if (codigoNormalizado === 'PRIMEIRACOMPRA' && cliente.pedidosAnteriores > 0) {
-    return { valido: false }
+    return { valido: false, mensagem: 'Este cupom vale só para a primeira compra' }
   }
 
   return { valido: true, desconto }
